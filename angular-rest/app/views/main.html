@@ -1,0 +1,32 @@
+
+<form ng-submit="submit(news)" novalidate schema="news">
+	<div class="form-group">
+	    <label for="title">Judul</label>
+	    <input type="text" class="form-control" ng-model="news.title" name="title" id="title" placeholder="Masukkan Judul"/>
+	</div>
+		<div class="form-group">
+	    <label for="content">Konten</label>
+	    <textarea class="form-control" ng-model="news.content" name="content" id="content" placeholder="Masukkan Konten"></textarea>
+	</div>
+	<input type="submit" class="btn btn-primary" />
+</form>
+
+<input type="text" class="form-control" placeholder="Search..." ng-model="searchf" />
+
+<h1>{{ searchf }}</h1>
+<h1 ng-bind="searchf"></h1>
+
+<table class="table table-condensed">
+	<thead>
+		<tr>
+			<th>title</th>
+			<th>content</th>
+		</tr>
+	</thead>
+	<tbody ng-repeat="n in newss">
+		<tr>
+			<td>{{n.title}}</td>
+			<td>{{n.content}}</td>
+		</tr>
+	</tbody>
+</table>
