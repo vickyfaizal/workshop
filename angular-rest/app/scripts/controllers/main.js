@@ -20,7 +20,8 @@ angular.module('angularApp')
     var newsRest = Restangular.all('news');
 
     $scope.search = function(keywords) {
-      newsRest.getList().then(function(newss){
+      console.log("keywords :"+keywords);
+      newsRest.getList({title:keywords}).then(function(newss){
         $scope.newss = newss;
       });
     }

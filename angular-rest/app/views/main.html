@@ -10,11 +10,8 @@
 	</div>
 	<input type="submit" class="btn btn-primary" />
 </form>
-
-<input type="text" class="form-control" placeholder="Search..." ng-model="searchf" />
-
-<h1>{{ searchf }}</h1>
-<h1 ng-bind="searchf"></h1>
+<hr/>
+<input type="text" class="form-control" placeholder="Search..." ng-model="searchf" ng-change="search(searchf)" />
 
 <table class="table table-condensed">
 	<thead>
