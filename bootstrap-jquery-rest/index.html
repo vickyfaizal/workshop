@@ -1,0 +1,95 @@
+<!doctype html>
+<html>
+	<head>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title> jQuery REST</title>
+		<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+	</head>
+	<body>
+		<div class="container-fluid">
+
+			<div class="row">
+				<div class="col-md-12">
+					<form id="formNews" method="POST">
+  						<div class="form-group">
+						    <label for="title">Judul</label>
+						    <input type="text" class="form-control" name="title" id="title" placeholder="Masukkan Judul"/>
+						</div>
+  						<div class="form-group">
+						    <label for="content">Konten</label>
+						    <textarea class="form-control" name="content" id="content" placeholder="Masukkan Konten"></textarea>
+						</div>
+						<button type="submit" class="btn btn-default">Submit</button>
+					</form>
+				</div>
+			</div>
+
+			<div class="row">
+				<div class="col-md-12">
+				<hr>
+				<button id ="reqNews" class="btn btn-default">reqNews</button>
+				<hr>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-md-12">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th> title</th>
+								<th> content</th>
+							</tr>
+						</thead>
+						<tbody id="tBodyNews" >
+						</tbody>
+					</table>
+				</div>
+			</div>
+
+		</div>
+
+	<script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+	<script type="text/javascript">
+		$('#reqNews').click(function(){
+			$.getJSON("http://localhost:8080/api/news", function(data){
+				$.each(data, function(key, val){
+					$('#tBodyNews').append("<tr><td>"+val.title+"</td><td>"+val.content+"</td></tr>");
+				});
+			});
+		});
+
+		$('#formNews').submit(function(e){
+			var formData = getFormData($(this));
+			console.log(formData);
+			$.ajax({
+				type: "post",
+				contentType: "application/json; charset=utf-8",
+				dataType: "json",
+				url: "http://localhost:8080/api/news",
+				data: JSON.stringify(formData),
+				success : function(data) {
+					console.log(data);
+				},
+				error : function(jqXHR, status, error) {
+					console.log("status : "+status);
+					console.log("errorMsg : "+error);
+				}
+			});
+			e.preventDefault();
+		});
+		
+		function getFormData($form){
+		    var unindexed_array = $form.serializeArray();
+		    var indexed_array = {};
+
+		    $.map(unindexed_array, function(n, i){
+		        indexed_array[n['name']] = n['value'];
+		    });
+
+		    return indexed_array;
+		}
+
+	</script>
+	</body>
+</html>
