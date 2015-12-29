@@ -1,0 +1,94 @@
+<header header="Newss" />
+<div class="row">
+	<div class="col-xs-12">
+		<div class="row">
+			<div class="col-xs-12">
+				<button class="btn btn-primary col-md-1 col-xs-12" ng-click="openForm()">
+					<span class="fa fa-plus"></span>
+				</button>
+
+				<form ng-submit="searchParams.page=1;search();" class="pull-right col-md-6 col-xs-12">
+					<fieldset>
+						<div class="form-group col-md-10 col-xs-12">
+							<input type="text" class="form-control" ng-model="searchParams.q" placeholder="Search..." autofocus/>
+						</div>
+						<button type="submit" value="Search" class="btn btn-default col-md-2 col-xs-12">
+							<span class="fa fa-search"></span>
+						</button>
+					</fieldset>
+				</form>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box">
+					<div class="box-header"></div>
+					<div class="box-body">
+						<div class="table-responsive">
+							<table class="table">
+								<thead>
+									<tr>
+										<th>Title</th>
+										<th>Content</th>
+										<th>Action</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr ng-repeat="news in newss">
+										<td> 
+											<a href="" ng-click="openForm(news)">
+												<span ng-bind="news.title"></span>
+											</a>
+										</td>
+										<td ng-bind="news.content"></td>
+										<td>
+											<a href="" class="btn btn-danger btn-xs" ng-click="remove(news)">
+												<span class="fa fa-trash"></span>
+											</a>
+										</td>
+									</tr>
+								</tbody>
+							</table>
+						</div>
+					</div>
+					<div class="box-footer">
+						<div class="row">
+							
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script type="text/ng-template" id="news.form.html">
+	<div class="modal-header">
+		<h3 class="modal-title">Add News</h3>
+	</div>
+
+	<form name="newsForm" ng-submit="submit(news, newsForm)" novalidate schema="news">
+		<div class="modal-body">
+			<fieldset>
+				<div class="form-group">
+					<label class="control-label" for="title">Title</label>
+					<div class="controls">
+						<input type="text" id="title" name="title" ng-model="news.title" class="form-control" /> 
+					</div
+				</div>
+
+				<div class="form-group">
+					<label class="control-label" for="content">Content</label>
+					<div class="controls">
+						<textarea rows="2" id="content" name="content" ng-model="news.content" class="form-control"> </textarea>
+					</div
+				</div
+			</fieldset>
+		</div>
+		<div class="modal-footer">
+			<input type="submit" value="Save" class="btn btn-primary col-md-2 col-xs-12" />
+			<span class="label label-danger" ng-show="error"> Ada kesalahan</span>
+		</div>
+	</form>
+</script>
