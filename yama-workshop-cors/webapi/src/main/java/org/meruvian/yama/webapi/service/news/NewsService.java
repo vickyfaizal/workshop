@@ -19,7 +19,7 @@ import org.meruvian.yama.tot.news.News;
 
 @Path("/api/news")
 @Produces(MediaType.APPLICATION_JSON)
-@Consumes(MediaType.APPLICATION_JSON)
+//@Consumes(MediaType.APPLICATION_JSON)
 public interface NewsService {
 	@GET
 	@Path("/{id}")
